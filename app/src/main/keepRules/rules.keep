@@ -1,0 +1,16 @@
+# Add project specific R8 rules here.
+# AGP will combine all keep rule files in src/main/keepRules to pass to R8
+#
+# For more details, see
+#   https://d.android.com/r/tools/r8/keep-rules
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+# Kotlin's multi-file facade classes (e.g. CollectionsKt__IterablesKt) inherit from each other with
+# package-private visibility. If R8 moves one of them to another package the app crashes at startup
+# with IllegalAccessError, so allow shrinking/renaming but not repackaging.
+-keep,allowshrinking,allowoptimization,allowobfuscation class kotlin.**Kt__*
